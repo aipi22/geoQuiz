@@ -1,0 +1,58 @@
+body {
+	background-color: #262626;
+}
+
+h1 {
+	text-align: center;
+	font-size: 80px;
+	font-family: Arial;
+	background: -webkit-linear-gradient(#00f2ff, #7000ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent
+}
+
+h3 {
+	color: white;
+	font-family: Arial;
+	font-size: 24px;
+}
+
+#ImgDiv {
+	align-items: center;
+	padding-left: 20%;
+}
+
+.center {
+	align-items: center;
+	text-align: center;
+	background-color: #121212;
+	border: 2px solid #1d1d1d;
+	padding: 20px;
+	border-radius: 25px;
+	margin: 20px auto;
+	max-width: 3000px;
+	width: 90%;
+}
+
+#country {
+	background-color: black;
+	height: 100px;
+}
+
+#countryText {
+	font-size: 32px;
+	color: white;
+	font-family: Arial;
+}
+
+.countries {
+	cursor: pointer;
+	transition: fill 0.2s ease;
+}
+
+.countries:hover path {
+	fill: #7db9e8 !important;
+	/* Change to any highlight color */
+	stroke: #333;
+	stroke-width: 1px;
+}
