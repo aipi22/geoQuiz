@@ -18,20 +18,29 @@ h3 {
 }
 
 #ImgDiv {
-	align-items: center;
-	padding-left: 20%;
+	padding-left: 0;
+	/* Force-reset the old padding */
+	width: 100%;
+	/* Let it take up the full width of the .center box */
 }
 
 .center {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	text-align: center;
+	/* Centers the CONTENT inside the box */
+	justify-content: center;
 	background-color: #121212;
 	border: 2px solid #1d1d1d;
-	padding: 20px;
+	padding: 40px;
+	/* Equal padding on all sides */
 	border-radius: 25px;
 	margin: 20px auto;
-	max-width: 3000px;
+	/* The 'auto' centers the BOX itself on the page */
 	width: 90%;
+	max-width: 2000px;
+	box-sizing: border-box;
+	/* Prevents padding from making the box too wide */
 }
 
 #country {
@@ -52,7 +61,31 @@ h3 {
 
 .countries:hover path {
 	fill: #7db9e8 !important;
-	/* Change to any highlight color */
 	stroke: #333;
 	stroke-width: 1px;
+}
+
+.horizontal {
+	display: flex;
+	flex-direction: row;
+	/* Put Score and Hints next to each other */
+	justify-content: center;
+	gap: 50px;
+	/* Space between Score and Hints */
+	margin-top: 20px;
+}
+
+.basicText {
+	color: white;
+	font-family: Arial;
+}
+
+svg {
+	max-width: 100%;
+	/* Keeps the map from breaking out of the box */
+	height: auto;
+	/* Maintains aspect ratio */
+	display: block;
+	margin: 0 auto;
+	/* Centers the SVG specifically */
 }
