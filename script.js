@@ -1,5 +1,7 @@
 const map = document.querySelector('svg');
 const countryText = document.getElementById('countryText');
+const scoreText = document.getElementById('score');
+const hintsText = document.getElementById('hints');
 
 const countryNames = {
 	"BD": "Bangladesh",
@@ -25,24 +27,43 @@ const countryNames = {
 	"TH": "Thailand",
 	"VN": "Vietnam"
 };
-
 const ids = Object.keys(countryNames);
-const randomId = ids[Math.floor(Math.random() * ids.length)];
-const targetCountryName = countryNames[randomId];
-countryText.innerText = `Click ${targetCountryName}`;
+const length = ids.length;
+
+let currentTargetId = "";
+let score = 0;
+
+function newRound() {
+	if (ids.length === 0) {
+		countryText.innerText = "Done!";
+		hintsText.innerText = "Great job!";
+		currentTargetId = "";
+		return;
+	}
+
+	currentTargetId = ids[Math.floor(Math.random() * ids.length)];
+	countryText.innerText = `Click on ${countryNames[currentTargetId]}`;
+}
 
 map.addEventListener('click', (e) => {
 	const region = e.target.closest('.countries');
 
-	if (region) {
-		const clickedId = region.id;
-		const clickedName = countryNames[clickedId];
+	if (!region) {
+		return;
+	}
 
-		if (clickedId === randomId) {
-			alert(`Correct! You found ${clickedName}!`);
-			location.reload();
-		} else {
-			alert(`Close! That was ${clickedName}. Try to find ${targetCountryName}.`);
-		}
+	if (region.id === currentTargetId) {
+		hintsText.innerText = `Yup, that was ${countryNames[currentTargetId]}`;
+		score++;
+		scoreText.innerText = `${score}/${length}`;
+		region.style.fill = "green";
+		const index = ids.indexOf(currentTargetId);
+		ids.splice(index, 1);
+		newRound();
+	} else {
+		hintsText.innerText = `Whoops! That was ${countryNames[region.id]}. You're looking for ${countryNames[currentTargetId]}. We will come back to that one.`;
+		region.style.fill = "red";
+		newRound();
 	}
 });
+newRound();
